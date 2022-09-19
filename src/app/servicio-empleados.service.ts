@@ -10,5 +10,7 @@ export class ServicioEmpleadosService {
   muestraMensaje(mensaje:string){
 
     alert(mensaje);
+
+    
   }
 }
