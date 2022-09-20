@@ -14,8 +14,12 @@ export class ActualizaComponentComponent implements OnInit {
     constructor(private router:Router, private route:ActivatedRoute, private miServicio:ServicioEmpleadosService, private empleadosService:EmpleadosService) { }
   
     empleados:Empleado[]=[]
+
+    accion:number;
   
     ngOnInit(): void {
+
+      this.accion=this.route.snapshot.queryParams["accion"];
 
       this.empleados = this.empleadosService.empleados;
 
@@ -29,24 +33,33 @@ export class ActualizaComponentComponent implements OnInit {
       this.cuadroSalario=empleado.salario;
     }
   
-  
-  
     volverHome(){
       this.router.navigate([""]);
       this.empleados=this.empleadosService.empleados;
     }
   
-    actualizarEmpleado(){
-  
-      let miEmpleado = new Empleado(this.cuadroNombre, this.cuadroApellido, this.cuadroCargo, this.cuadroSalario);
-      // this.miServicio.muestraMensaje("Nombre del empleado: " + miEmpleado.nombre + " " + miEmpleado.apellido);
-      this.empleadosService.actualizarEmpleado(this.indice, miEmpleado);
-      this.router.navigate([""]);
-    }
+    // actualizarEmpleado(){
+    //   let miEmpleado = new Empleado(this.cuadroNombre, this.cuadroApellido, this.cuadroCargo, this.cuadroSalario);
+    //   // this.miServicio.muestraMensaje("Nombre del empleado: " + miEmpleado.nombre + " " + miEmpleado.apellido);
+    //   this.empleadosService.actualizarEmpleado(this.indice, miEmpleado);
+    //   this.router.navigate([""]);
+    // }
     
-    eliminaEmpleado(){
-      this.empleadosService.eliminarEmpleado(this.indice);
-      this.router.navigate([""]);
+    // eliminaEmpleado(){
+    //   this.empleadosService.eliminarEmpleado(this.indice);
+    //   this.router.navigate([""]);
+    // }
+
+    actualizarEmpleado(){
+      if (this.accion==1){
+        let miEmpleado = new Empleado(this.cuadroNombre, this.cuadroApellido, this.cuadroCargo, this.cuadroSalario);
+        // this.miServicio.muestraMensaje("Nombre del empleado: " + miEmpleado.nombre + " " + miEmpleado.apellido);
+        this.empleadosService.actualizarEmpleado(this.indice, miEmpleado);
+        this.router.navigate([""]);
+      }else{
+        this.empleadosService.eliminarEmpleado(this.indice);
+        this.router.navigate([""]);
+      }
     }
 
 
