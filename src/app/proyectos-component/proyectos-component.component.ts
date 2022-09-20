@@ -29,7 +29,7 @@ export class ProyectosComponentComponent implements OnInit {
 
     let miEmpleado = new Empleado(this.cuadroNombre, this.cuadroApellido, this.cuadroCargo, this.cuadroSalario);
     // this.miServicio.muestraMensaje("Nombre del empleado: " + miEmpleado.nombre + " " + miEmpleado.apellido);
-    this.empleadosService.agregarEmepladoServicio(miEmpleado);
+    this.empleadosService.agregarEmpleadoServicio(miEmpleado);
     this.router.navigate([""]);
   }
   
